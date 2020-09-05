@@ -1429,7 +1429,7 @@ contains
         ! -- create outer iteration table
         ! -- table dimensions
         ntabrows = 1
-        ntabcols = 6
+        ntabcols = 7
         if (this%numtrack > 0) then
           ntabcols = ntabcols + 4
         end if
@@ -1456,6 +1456,8 @@ contains
           call this%outertab%initialize_column(tag, 15, alignment=TABRIGHT)
         end if
         tag = 'MAXIMUM CHANGE'
+        call this%outertab%initialize_column(tag, 15, alignment=TABRIGHT)
+        tag = 'HNEW'
         call this%outertab%initialize_column(tag, 15, alignment=TABRIGHT)
         tag = 'STEP SUCCESS'
         call this%outertab%initialize_column(tag, 7, alignment=TABRIGHT)
@@ -1599,6 +1601,7 @@ contains
         call this%outertab%add_term(' ')
       end if
       call this%outertab%add_term(this%hncg(kiter))
+      call this%outertab%add_term(this%x(this%lrch(1,kiter)))
       call this%outertab%add_term(cmsg)
       call this%outertab%add_term(trim(strh))
     end if
@@ -2679,6 +2682,7 @@ contains
         call this%outertab%add_term(resin)
         call this%outertab%add_term(this%res_prev)
       end if
+      call this%outertab%add_term(' ')
       call this%outertab%add_term(' ')
       call this%outertab%add_term(cmsg)
       call this%outertab%add_term(' ')
